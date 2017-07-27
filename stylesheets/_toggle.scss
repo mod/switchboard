@@ -1,0 +1,64 @@
+//colors
+$color_alto_approx: #dddddd;
+$seashell: #f1f1f1;
+$white: #fff;
+$black_30: rgba(0, 0, 0, 0.3);
+$color_granny_smith_apple_approx: #8ce196;
+
+//@extend-elements
+//original selectors
+//input.cmn-toggle-round +label:before, input.cmn-toggle-round +label:after
+%defaults {
+	display: block;
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	bottom: 1px;
+	content: "";
+}
+
+
+.cmn-toggle {
+	position: absolute;
+	margin-left: -9999px;
+	visibility: hidden;
+	+ label {
+		display: block;
+		position: relative;
+		cursor: pointer;
+		outline: none;
+		user-select: none;
+	}
+}
+input.cmn-toggle-round {
+	+ label {
+		padding: 2px;
+		width: 120px;
+		height: 60px;
+		background-color: $color_alto_approx;
+		border-radius: 60px;
+		&:before {
+			@extend %defaults;
+			right: 1px;
+			background-color: $seashell;
+			border-radius: 60px;
+			transition: background 0.4s;
+		}
+		&:after {
+			@extend %defaults;
+			width: 58px;
+			background-color: $white;
+			border-radius: 100%;
+			box-shadow: 0 2px 5px $black_30;
+			transition: margin 0.4s;
+		}
+	}
+	&:checked + label {
+		&:before {
+			background-color: $color_granny_smith_apple_approx;
+		}
+		&:after {
+			margin-left: 60px;
+		}
+	}
+}
